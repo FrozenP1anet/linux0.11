@@ -1,2 +1,2 @@
 # linux0.11
-A simple hello world example using BIOS interrupt
+Bootsect module load setup module into memory 
