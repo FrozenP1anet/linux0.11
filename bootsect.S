@@ -52,7 +52,7 @@ load_setup:
     jmp load_setup
 
 ok_load_setup:
-    # Display $mag
+    # Display $msg
     movw $msg, %ax
     movw %ax, %bp
     movw $0x1301, %ax

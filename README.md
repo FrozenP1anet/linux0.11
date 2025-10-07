@@ -1,2 +1,5 @@
 # linux0.11
-Bootsect module load setup module into memory 
+## bootsect.S
+Load setup module into memory 
+## setup.S
+Get hardware info
