@@ -1,5 +1,11 @@
 # linux0.11
 ## bootsect.S
-Load setup module into memory 
+* Load setup module into memory 
+* Load system module into memory 
 ## setup.S
-Get hardware info
+* Get hardware info
+* Set GDT
+* Enter protected mode
+* Jump to kernel
+## head.S
+linux kernel
