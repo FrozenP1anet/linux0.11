@@ -125,6 +125,39 @@ end_move:
     outb %al, $0x60
     call empty_8042
 
+    # Configure PIC
+    # Set ICW1
+    movb $0x11, %al
+    outb %al, $0x20
+    .word 0x00eb, 0x00eb
+    outb %al, $0xa0
+    .word 0x00eb, 0x00eb
+    # Set ICW2 (Mapping between IRQs and int vector number)
+    movb $0x20, %al
+    outb %al, $0x21
+    .word 0x00eb, 0x00eb
+    movb $0x28, %al
+    outb %al, $0xa1
+    .word 0x00eb, 0x00eb
+    # Set ICW3 (Connection between the master and slave PICs)
+    movb $0x04, %al
+    outb %al, $0x21
+    .word 0x00eb, 0x00eb
+    movb $0x02, %al
+    outb %al, $0xa1
+    .word 0x00eb, 0x00eb
+    # Set ICW4
+    movb $0x01, %al
+    outb %al, $0x21
+    .word 0x00eb, 0x00eb
+    outb %al, $0xa1
+    .word 0x00eb, 0x00eb
+    # Set OCW1 (Interrupt mask)
+    movb $0xff, %al
+    outb %al, $0x21
+    .word 0x00eb, 0x00eb
+    outb %al, $0xa1
+
     # Set cr0.PE, enter protected mode
     movl %cr0, %eax
     xorb $1, %al

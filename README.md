@@ -8,4 +8,5 @@
 * Enter protected mode
 * Jump to kernel
 ## head.S
-linux kernel
+* Setup IDT
+* Define intrrupt handler
