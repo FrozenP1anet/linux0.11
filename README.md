@@ -9,4 +9,5 @@
 * Jump to kernel
 ## head.S
 * Setup IDT
-* Define intrrupt handler
+* Define default intrrupt handler
+* Define clock interrupt handler
