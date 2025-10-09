@@ -83,7 +83,7 @@ no_disk1:
     rep
     stosb
 is_disk1:
-    cli     # Close interrupt
+    cli     # Close maskable interrupt
 
     movw $0x0000, %ax
     cld
@@ -152,7 +152,7 @@ end_move:
     outb %al, $0xa1
     .word 0x00eb, 0x00eb
     # Set OCW1 (Interrupt mask)
-    movb $0xfe, %al
+    movb $0xff, %al
     outb %al, $0x21
     .word 0x00eb, 0x00eb
     movb $0xff, %al

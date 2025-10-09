@@ -11,3 +11,5 @@
 * Setup IDT
 * Define default intrrupt handler
 * Define clock interrupt handler
+* Setup page directory and page tables, enable memory paging
+* Enter main() function

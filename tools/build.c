@@ -39,8 +39,8 @@ int main(int argc, char **argv)
 	char major_root, minor_root;
 	struct stat sb;
 
-	// if ((argc != ARG_LEN) && (argc != ARG_LEN + 1))
-	// 	usage();
+	if ((argc != ARG_LEN) && (argc != ARG_LEN + 1))
+		usage();
 
 	if (argc == ARG_LEN + 1)
 	{
