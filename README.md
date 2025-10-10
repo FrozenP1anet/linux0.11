@@ -12,4 +12,5 @@
 * Define default intrrupt handler
 * Define clock interrupt handler
 * Setup page directory and page tables, enable memory paging
+* Setup stack
 * Enter main() function

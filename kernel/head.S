@@ -12,9 +12,11 @@ startup_32:
     movw %ax, %fs
     movw %ax, %gs
     
+    lss stack_start, %esp   # Set %esp and %ss
     call setup_idt
     call set_clock_idt
     call setup_gdt
+    
     sti     # Open maskable interrupt
 
     movl $0x10, %eax
@@ -178,8 +180,8 @@ idt:
     .fill 256, 8, 0
 gdt:
     .quad 0x0000000000000000    # CPU reserve
-    .quad 0x00c09a00000007ff    # Text segment
-    .quad 0x00c09200000007ff    # Data segment
+    .quad 0x00c09a0000000fff    # Text segment
+    .quad 0x00c0920000000fff    # Data segment
     .quad 0x00c0f20b8000ffff    # Video segment
     .quad 0x0000000000000000
     .fill 251, 8, 0
