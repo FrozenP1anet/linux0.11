@@ -1,6 +1,8 @@
+#include <linux/tty.h>
+
 int main(void)
 {
-    __asm__("int $0x80  \n\r"::);
+    tty_init();
 
     while (1) ;
 }
