@@ -28,23 +28,22 @@ _start_setup:
     movb $0x03, %ah
     xor %bh, %bh
     int $0x10
-    movw %dx, (0)
+    movw %dx, (0)       # Curser position
     movb $0x88, %ah
     int $0x15
     movw %ax, (2)
 
     movb $0x0f, %ah
     int $0x10
-    movw %bx, (4)
-    movw %ax, (6)
+    movw %bx, (4)       # Video page
+    movw %ax, (6)       # Screen coloumn
     movb $0x12, %ah
     movb $0x10, %bl
     int $0x10
-    movw %ax, (8)
-    movw %bx, (10)
-    movw %cx, (12)
-    # ???
-    # movw $0x5019, (14)
+    movw %ax, (8)       # EGA_AX
+    movw %bx, (10)      # EGA_BX
+    movw %cx, (12)      # EGA_CX
+    movw $0x5019, (14)  # Screen line
 
     # Get hd0 info
     movw $0x0000, %ax

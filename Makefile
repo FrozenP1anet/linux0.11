@@ -22,7 +22,7 @@ setup: setup.o
 setup.o: setup.S
 	$(AS) -o $@ $<
 
-kernel/system: 
+kernel/system: kernel/head.S kernel/*.c kernel/chr_drv/*.c
 	cd kernel; make system; cd ..
 
 clean:
