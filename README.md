@@ -14,3 +14,5 @@
 * Setup page directory and page tables, enable memory paging
 * Setup stack
 * Enter main() function
+
+## Add printk() support
