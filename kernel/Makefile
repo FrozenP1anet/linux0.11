@@ -2,7 +2,7 @@ GCC := gcc
 # -m is required for targeting 32-bit architecture
 CCFLAG := -I../include -nostdinc -Wall -fomit-frame-pointer -fno-pic -fno-stack-protector -c -m32
 LDFLAG := -Ttext 0x0 -s --oformat binary -m elf_i386
-OBJS := head.o main.o sched.o chr_drv/chr_drv.a printk.o vsprintf.o ../lib/lib.a
+OBJS := head.o main.o sched.o chr_drv/chr_drv.a printk.o vsprintf.o ../lib/lib.a ../mm/mm.o
 
 system: $(OBJS)
 	$(LD) $(LDFLAG) -e startup_32 -o $@ $^
@@ -28,8 +28,12 @@ chr_drv/chr_drv.a: chr_drv/*.c
 ../lib/lib.a : ../lib/*.c
 	cd ../lib; make lib.a; cd ../kernel
 
+../mm/mm.o : ../mm/*.c
+	cd ../mm; make mm.o; cd ..
+
 clean:
 	rm -f *.o
 	rm -f system
 	cd chr_drv; make clean; cd ..
 	cd ../lib; make clean; cd ../kernel
+	cd ../mm; make clean; cd ../kernel

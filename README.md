@@ -16,3 +16,6 @@
 * Enter main() function
 
 ## Add printk() support
+
+## main.c
+* Initialize memory management
