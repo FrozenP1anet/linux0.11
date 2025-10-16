@@ -30,13 +30,18 @@ int main(void)
     
     sched_init();
     tty_init();
+    trap_init();
     printk("memory start: %d, end: %d\n\r", main_memory_start, memory_end);
 
+    // int a = 1/0;    // Trigger divide error interrupt
+
     __asm__ __volatile__(
-        "int $0x7f\n\r"     // Enter ignore_int
         "int $0x80\n\r"     // Enter system_call
+        "movw $0x1b, %%ax\n\r"
+        "movw %%ax, %%gs\n\r"   // Set RPL=3, while video segment's DPL=0
+        "movl $0, %%edi\n\r"
+        "movw $0x0f41, %%gs:(%%edi)\n\r"
         "loop:\n\r"
         "jmp loop"
-    );
-
+        ::);
 }

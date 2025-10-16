@@ -21,3 +21,4 @@
 * Initialize memory management
 * Initialize systam call
 * Initialize console
+* Set CPU exceptions

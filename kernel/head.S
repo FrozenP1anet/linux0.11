@@ -182,6 +182,6 @@ gdt:
     .quad 0x0000000000000000    # CPU reserve
     .quad 0x00c09a0000000fff    # Text segment
     .quad 0x00c0920000000fff    # Data segment
-    .quad 0x00c0f20b8000ffff    # Video segment
+    .quad 0x00c0920b8000ffff    # Video segment (Set DPL=0)
     .quad 0x0000000000000000
     .fill 251, 8, 0
