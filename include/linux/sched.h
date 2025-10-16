@@ -3,4 +3,6 @@
 
 #include <linux/mm.h>
 
+void sched_init();
+
 #endif

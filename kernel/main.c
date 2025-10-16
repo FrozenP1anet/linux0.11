@@ -1,5 +1,6 @@
 #include <linux/tty.h>
 #include <linux/kernel.h>
+#include <linux/sched.h>
 
 extern void mem_init(long start, long end);
 
@@ -27,8 +28,15 @@ int main(void)
     main_memory_start = buffer_memory_end;
     mem_init(main_memory_start, memory_end);
     
+    sched_init();
     tty_init();
-    printk("memory start: %d, end: %d", main_memory_start, memory_end);
+    printk("memory start: %d, end: %d\n\r", main_memory_start, memory_end);
 
-    while (1) ;
+    __asm__ __volatile__(
+        "int $0x7f\n\r"     // Enter ignore_int
+        "int $0x80\n\r"     // Enter system_call
+        "loop:\n\r"
+        "jmp loop"
+    );
+
 }

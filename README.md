@@ -19,3 +19,5 @@
 
 ## main.c
 * Initialize memory management
+* Initialize systam call
+* Initialize console
