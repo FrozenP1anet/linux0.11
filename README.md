@@ -17,6 +17,12 @@
 
 ## Add printk() support
 
+## Create process
+### Create INIT process
+* Set PCB(Process control block), including ldt[3] and tss
+* Set ldt and tss address to GDT 
+* Set up kernel stack
+
 ## main.c
 * Initialize memory management
 * Initialize systam call
