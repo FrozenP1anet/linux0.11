@@ -3,7 +3,7 @@ GCC := gcc
 CCFLAG := -I../include -nostdinc -Wall -fomit-frame-pointer -fno-pic -fno-stack-protector -c -m32
 LDFLAG := -Ttext 0x0 -s --oformat binary -m elf_i386
 OBJS := head.o main.o sched.o chr_drv/chr_drv.a printk.o vsprintf.o ../lib/lib.a ../mm/mm.o \
-	sys_call.o asm.o traps.o
+	sys_call.o asm.o traps.o fork.o
 
 system: $(OBJS)
 	$(LD) $(LDFLAG) -e startup_32 -o $@ $^
@@ -30,6 +30,9 @@ asm.o : asm.S
 	$(GCC) -m32 -traditional -c -o $@ $<
 
 traps.o : traps.c
+	$(GCC) $(CCFLAG) -o $@ $<
+
+fork.o : fork.c
 	$(GCC) $(CCFLAG) -o $@ $<
 
 chr_drv/chr_drv.a: chr_drv/*.c

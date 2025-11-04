@@ -21,7 +21,8 @@ typedef unsigned int size_t;
  *
  *      (C) 1991 Linus Torvalds
  */
-extern int strlen(const char * s);
+int strlen(const char * s);
+void * memcpy(void * dest,const void * src, int n);
 
 #endif
 

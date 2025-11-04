@@ -10,4 +10,6 @@ extern unsigned long HIGH_MEMORY;
 
 extern unsigned char mem_map [ PAGING_PAGES ];
 
+extern unsigned long get_free_page();
+
 #endif

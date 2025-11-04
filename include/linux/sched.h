@@ -4,6 +4,7 @@
 #include <linux/mm.h>
 #include <linux/head.h>
 
+#define NR_TASKS 64         // Max tasks number
 #define FIRST_TSS_ENTRY 5
 #define FIRST_LDT_ENTRY (FIRST_TSS_ENTRY + 1)
 #define _TSS(n) ((((unsigned long)n) << 4) + (FIRST_TSS_ENTRY << 3))
@@ -58,7 +59,11 @@ struct task_struct {
     struct tss_struct tss;
 };
 
+extern struct task_struct *task[NR_TASKS];
+extern struct task_struct *current;
+
 void sched_init();
 void trap_init();
+int find_empty_process();
 
 #endif
