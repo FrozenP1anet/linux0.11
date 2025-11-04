@@ -1,6 +1,7 @@
 #include <linux/tty.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
+#include <asm/system.h>
 
 extern void mem_init(long start, long end);
 
@@ -33,14 +34,14 @@ int main(void)
     trap_init();
     printk("memory start: %d, end: %d\n\r", main_memory_start, memory_end);
 
-    // int a = 1/0;    // Trigger divide error interrupt
+    move_to_user_mode();
 
     __asm__ __volatile__(
-        "int $0x80\n\r"     // Enter system_call
+        "int $0x80\n\r"
         "movw $0x1b, %%ax\n\r"
-        "movw %%ax, %%gs\n\r"   // Set RPL=3, while video segment's DPL=0
+        "movw %%ax, %%gs\n\r"
         "movl $0, %%edi\n\r"
-        "movw $0x0f41, %%gs:(%%edi)\n\r"
+        "movw $0x0d43, %%gs:(%%edi)\n\r"
         "loop:\n\r"
         "jmp loop"
         ::);

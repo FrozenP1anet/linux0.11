@@ -28,3 +28,4 @@
 * Initialize systam call
 * Initialize console
 * Set CPU exceptions
+* Enter user mode
